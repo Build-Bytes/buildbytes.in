@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "buildbytes-in"
+version = "0.1.0"
+description = ""
+authors = ["AMAN MULLA <145239596+amanmulla3291@users.noreply.github.com>"]
+readme = "README.md"
+packages = [{include = "buildbytes"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^5.0.7"
+npm = "^0.1.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
