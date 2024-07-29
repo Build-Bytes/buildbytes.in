@@ -4,17 +4,16 @@ import gsap from 'gsap';
 'use client';
 import useMousePosition from '../hooks/useMousePosition';
 
-export default function Cursor() {
+export default function Cursor({size=25, color='rgb(236,78,57)', blendMode='normal'}) {
+
     let {x, y} = useMousePosition();
     const cursorRef = useRef(null);
 
     useEffect(() => {
-        console.log(x, y)
-
         const context = gsap.context(() => {
             gsap.to(cursorRef.current, {
-                x: x,
-                y: y,
+                x: x ,
+                y: y ,
                 duration: 0.5,
                 ease: 'back.out(2)'
             })
@@ -26,7 +25,13 @@ export default function Cursor() {
     return (
         <div
             ref={cursorRef}
-            className='max-md:hidden absolute w-7 h-7 bg-myOrange rounded-full top-0 left-0 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none'
+            className="max-md:hidden absolute rounded-full top-0 left-0 transform -translate-x-1/2 -translate-y-1/2"
+            style={{
+                width: size,
+                height: size,
+                backgroundColor: color,
+                mixBlendMode: blendMode
+            }}
         >
         </div>
     )

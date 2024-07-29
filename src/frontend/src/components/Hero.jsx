@@ -27,7 +27,7 @@ export default function Hero() {
                 <h1 className='w-40 h-10 rounded-full bg-[rgb(236,78,57)] inline-flex justify-center items-center'>7</h1>
                 <h1 className='w-40 h-10 rounded-full bg-[rgb(236,78,57)] inline-flex justify-center items-center'>8</h1>
             </div>
-            <Cursor />
+            <Cursor size={50} isTransperent={true} />
         </section>
     )
 }
