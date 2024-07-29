@@ -1,5 +1,6 @@
 import React from 'react'
 
+// import Cursor from './components/Cursor';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 
@@ -9,6 +10,7 @@ export default function App() {
     <div className='w-full h-screen bg-zinc-800 text-white'>
       <Navbar />
       <Hero />
+      {/* <Cursor /> */}
     </div>
   )
 }
