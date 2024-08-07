@@ -1,33 +1,55 @@
-import React from 'react'
-import Cursor from './Cursor';
+import React, { useRef, useState } from 'react'
+// import Cursor from './Cursor';
+import { motion } from 'framer-motion';
+import useMousePosition from '../hooks/useMousePosition';
+
+// image 
+import blackCircle from '../assets/black-circle.svg'
 
 export default function Hero() {
+    // const [cursorSize, setCursorSize] = useState(25);
+    const {x, y} = useMousePosition();
+
+    const varients = {
+        initial1: {
+            opacity: 0,
+            x: -500,
+        },
+        initial2: {
+            opacity: 0,
+            x: 500,
+        },
+        final: {
+            opacity: 1,
+            x: 0
+        }
+    }
 
     return (
-        <section className="w-full h-screen flex flex-col justify-center lg:flex-row items-center lg:justify-between" >
-            <div className="text-[15vw] font-bold leading-[16vw] lg:text-[8vw] lg:leading-[8vw]">
-                <h1>Welcome to</h1>
-                <h1>BuildBytes.</h1>
-                <div className="max-md:hidden text-myOrange">
-                    <h1>We build,</h1>
-                    <h1>your future.</h1>
-                </div>
+        <section className="w-full h-screen flex justify-center flex-col overflow-hidden">
+            <motion.div className='font-extrabold text-center' variants={varients} initial='initial1' animate='final' transition={{ delay: 0.8, type: 'spring', stiffness: 300 }}>
+                <h1 className='text-6xl md:text-8xl lg:text-10xl'>Welcome to</h1>
+                <h1 className='text-6xl md:text-8xl lg:text-10xl'>BuildBytes.</h1>
+            </motion.div>
+            <motion.div className='text-myOrange font-extrabold text-center' variants={varients} initial='initial2' animate='final' transition={{ delay: 0.8, type: 'spring', stiffness: 300 }}>
+                <h1 className='text-6xl md:text-8xl lg:text-10xl'>We Build,</h1>
+                <h1 className='text-6xl md:text-8xl lg:text-10xl'>Your Future.</h1>
+            </motion.div>
+            <div 
+                className='max-lg:hidden text-black absolute w-full h-screen flex justify-center flex-col font-extrabold text-center text-8xl'
+                style={{
+                    position: 'absolute',
+                    maskImage: `url(${blackCircle})`,
+                    background: 'rgb(236,78,57)',
+                    maskRepeat: 'no-repeat',
+                    maskSize: 50
+                }}
+            >
+                <h1 className='tracking-tight'>Weeeeeeeee</h1>
+                <h1>Buildddddd</h1>
+                <h1>Yoooou're</h1>
+                <h1>Fuuuuuture.</h1>
             </div>
-            <div className="text-[15vw] font-bold leading-[16vw] max-lg:text-[rgb(236,78,57)] lg:hidden lg:leading-[8vw]" >
-                <h1>We build,</h1>
-                <h1>your future.</h1>
-            </div>
-            <div className="border-2 border-red-600 grid grid-cols-2 justify-items-center items-center lg:h-[80%] lg:w-[35%]">
-                <h1 className='w-40 h-10 rounded-full bg-[rgb(236,78,57)] inline-flex justify-center items-center'>1</h1>
-                <h1 className='w-40 h-10 rounded-full bg-[rgb(236,78,57)] inline-flex justify-center items-center'>2</h1>
-                <h1 className='w-40 h-10 rounded-full bg-[rgb(236,78,57)] inline-flex justify-center items-center'>3</h1>
-                <h1 className='w-40 h-10 rounded-full bg-[rgb(236,78,57)] inline-flex justify-center items-center'>4</h1>
-                <h1 className='w-40 h-10 rounded-full bg-[rgb(236,78,57)] inline-flex justify-center items-center'>5</h1>
-                <h1 className='w-40 h-10 rounded-full bg-[rgb(236,78,57)] inline-flex justify-center items-center'>6</h1>
-                <h1 className='w-40 h-10 rounded-full bg-[rgb(236,78,57)] inline-flex justify-center items-center'>7</h1>
-                <h1 className='w-40 h-10 rounded-full bg-[rgb(236,78,57)] inline-flex justify-center items-center'>8</h1>
-            </div>
-            <Cursor size={50} isTransperent={true} />
         </section>
     )
 }
