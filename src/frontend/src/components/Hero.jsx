@@ -1,4 +1,5 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import gsap from 'gsap';
 
 // hooks
 import useMousePosition from '../hooks/useMousePosition';
@@ -8,17 +9,52 @@ import blackCircle from '../assets/black-circle.svg'
 
 export default function Hero() {
 
+    const charRef = useRef(null);
+
+    useEffect(() => {
+        const contenxt = gsap.context(() => {
+            const tl = gsap.timeline();
+            
+        });
+
+        return () => contenxt.kill();
+    }, []);
+
     const {x, y} = useMousePosition();
 
     return (
         <section className="w-full h-screen flex justify-center flex-col overflow-hidden">
             <div className='font-extrabold text-center'>
-                <h1 className='text-6xl md:text-8xl lg:text-10xl'>Welcome to</h1>
-                <h1 className='text-6xl md:text-8xl lg:text-10xl'>BuildBytes.</h1>
+                <h1 className='text-6xl md:text-8xl lg:text-10xl'>
+                    {
+                        "Welcome to".split('').map((char, i) => (
+                            <span ref={charRef} key={i}>{char}</span>
+                        ))
+                    }
+                </h1>
+                <h1 className='text-6xl md:text-8xl lg:text-10xl'>
+                    {
+                        "BuildBytes.".split('').map((char, i) => (
+                            <span ref={charRef} key={i}>{char}</span>
+                        ))
+                    }
+                </h1>
             </div>
             <div className='text-myOrange font-extrabold text-center'>
-                <h1 className='text-6xl md:text-8xl lg:text-10xl'>We Build,</h1>
-                <h1 className='text-6xl md:text-8xl lg:text-10xl'>Your Future.</h1>
+                <h1 className='text-6xl md:text-8xl lg:text-10xl'>
+                    {
+                        "We Build,".split('').map((char, i) => (
+                            <span key={i}>{char}</span>
+                        ))
+                    }
+                </h1>
+                <h1 className='text-6xl md:text-8xl lg:text-10xl'>
+                    {
+                        "Your Future.".split('').map((char, i) => (
+                            <span key={i}>{char}</span>
+                        ))
+                    }
+                </h1>
             </div>
             <div 
                 className='max-lg:hidden text-black absolute w-full h-screen flex justify-center flex-col font-extrabold text-center text-8xl'
