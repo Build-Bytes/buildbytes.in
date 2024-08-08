@@ -1,4 +1,5 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import Cursor from './Cursor'
 
 // images 
 import blackCircle from '../assets/black-circle.svg'
@@ -6,7 +7,8 @@ import blackCircle from '../assets/black-circle.svg'
 export default function Hero() {
 
     const charRefs = useRef([]);
-    const cursorRef = useRef(null);
+    const [size, setSize] = useState(30);
+
 
     const addToRefs = (el) => {
         if (el && !charRefs.current.includes(el)) {
@@ -16,11 +18,12 @@ export default function Hero() {
 
 
     return (
-        <section className="w-full h-screen flex justify-center flex-col overflow-hidden">
-            <div className='font-extrabold text-center'>
+        <section className="w-full h-screen flex justify-center items-center flex-col overflow-hidden">
+            <div className='relative font-extrabold text-center' >
+                <div className='max-lg:hidden absolute w-full h-full z-20' onMouseEnter={() => setSize(200)} onMouseLeave={() => setSize(30)}></div>
                 <h1 className='text-6xl md:text-8xl lg:text-10xl'>
                     {
-                        "Welcome to".split("").map((char, i) => (
+                        "Welcome to".split('').map((char, i) => (
                             <span ref={addToRefs} key={i}>{char}</span>
                         ))
                     }
@@ -32,16 +35,14 @@ export default function Hero() {
                         ))
                     }
                 </h1>
-            </div>
-            <div className='text-myOrange font-extrabold text-center'>
-                <h1 className='text-6xl md:text-8xl lg:text-10xl'>
+                <h1 className='text-6xl md:text-8xl lg:text-10xl text-amber-500'>
                     {
                         "We Build,".split('').map((char, i) => (
                             <span key={i}>{char}</span>
                         ))
                     }
                 </h1>
-                <h1 className='text-6xl md:text-8xl lg:text-10xl'>
+                <h1 className='text-6xl md:text-8xl lg:text-10xl text-amber-500'>
                     {
                         "Your Future.".split('').map((char, i) => (
                             <span key={i}>{char}</span>
@@ -50,22 +51,7 @@ export default function Hero() {
                 </h1>
             </div>
 
-            {/* <div
-                ref={cursorRef}
-                className='max-lg:hidden text-black absolute w-full h-screen flex justify-center flex-col font-extrabold text-center text-8xl'
-                style={{
-                    position: 'absolute',
-                    maskImage: `url(${blackCircle})`,
-                    background: 'rgb(236,78,57)',
-                    maskRepeat: 'no-repeat',
-                    maskSize: size
-                }}
-            >
-                <h1 className='tracking-tight'>Weeeeeeeee</h1>
-                <h1>Buildddddd</h1>
-                <h1>Yoooou're</h1>
-                <h1>Fuuuuuture.</h1>
-            </div> */}
+            <Cursor className='z-10' size={size} color='white' blendMode='exclusion' />
 
         </section>
     )

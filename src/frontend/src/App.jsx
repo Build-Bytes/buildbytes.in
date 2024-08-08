@@ -7,7 +7,7 @@ import Hero from './components/Hero';
 export default function App() {
   
   return (
-    <div className='w-full h-screen bg-zinc-800 text-white'>
+    <div className='w-full h-screen bg-black text-white'>
       <Navbar />
       <Hero />
       {/* <Cursor /> */}

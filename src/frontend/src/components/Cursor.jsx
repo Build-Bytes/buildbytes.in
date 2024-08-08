@@ -25,7 +25,7 @@ export default function Cursor({size=25, color='rgb(236,78,57)', blendMode='norm
     return (
         <div
             ref={cursorRef}
-            className="max-lg:hidden absolute rounded-full top-0 left-0 transform -translate-x-1/2 -translate-y-1/2 z-[9]"
+            className="max-lg:hidden absolute rounded-full top-0 left-0 transform -translate-x-1/2 -translate-y-1/2"
             style={{
                 width: size,
                 height: size,
