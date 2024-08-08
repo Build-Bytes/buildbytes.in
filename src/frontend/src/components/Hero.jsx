@@ -1,9 +1,6 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import Cursor from './Cursor'
 
-// images 
-import blackCircle from '../assets/black-circle.svg'
-
 export default function Hero() {
 
     const charRefs = useRef([]);
@@ -20,7 +17,10 @@ export default function Hero() {
     return (
         <section className="w-full h-screen flex justify-center items-center flex-col overflow-hidden">
             <div className='relative font-extrabold text-center' >
+                {/* Overlay for Cursor animation */}
                 <div className='max-lg:hidden absolute w-full h-full z-20' onMouseEnter={() => setSize(200)} onMouseLeave={() => setSize(30)}></div>
+
+                {/* Slogans */}
                 <h1 className='text-6xl md:text-8xl lg:text-10xl'>
                     {
                         "Welcome to".split('').map((char, i) => (
@@ -50,7 +50,6 @@ export default function Hero() {
                     }
                 </h1>
             </div>
-
             <Cursor className='z-10' size={size} color='white' blendMode='exclusion' />
 
         </section>
