@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import gsap from 'gsap';
 
 // hooks
@@ -9,33 +9,45 @@ import blackCircle from '../assets/black-circle.svg'
 
 export default function Hero() {
 
-    const charRef = useRef(null);
+    const charRefs = useRef([]);
+    const cursorRef = useRef(null);
+    const {x, y} = useMousePosition();
+    let [size, setSize] = useState(30);
+
 
     useEffect(() => {
-        const contenxt = gsap.context(() => {
-            const tl = gsap.timeline();
-            
-        });
+        const context = gsap.context(() => {
+            gsap.to(cursorRef.current, {
+                webkitMaskPosition: `${x-size/2}px ${y-size/2}px`,
+                duration: 0.5,
+                ease: 'back.out(2)',
+            })
+        })
 
-        return () => contenxt.kill();
-    }, []);
+        return () => context.kill();
+    }, [x, y]);
 
-    const {x, y} = useMousePosition();
+    const addToRefs = (el) => {
+        if (el && !charRefs.current.includes(el)) {
+            charRefs.current.push(el);
+        }
+    };
+
 
     return (
         <section className="w-full h-screen flex justify-center flex-col overflow-hidden">
             <div className='font-extrabold text-center'>
                 <h1 className='text-6xl md:text-8xl lg:text-10xl'>
                     {
-                        "Welcome to".split('').map((char, i) => (
-                            <span ref={charRef} key={i}>{char}</span>
+                        "Welcome to".split("").map((char, i) => (
+                            <span ref={addToRefs} key={i}>{char}</span>
                         ))
                     }
                 </h1>
                 <h1 className='text-6xl md:text-8xl lg:text-10xl'>
                     {
                         "BuildBytes.".split('').map((char, i) => (
-                            <span ref={charRef} key={i}>{char}</span>
+                            <span ref={addToRefs} key={i}>{char}</span>
                         ))
                     }
                 </h1>
@@ -56,14 +68,15 @@ export default function Hero() {
                     }
                 </h1>
             </div>
-            <div 
+            <div
+                ref={cursorRef}
                 className='max-lg:hidden text-black absolute w-full h-screen flex justify-center flex-col font-extrabold text-center text-8xl'
                 style={{
                     position: 'absolute',
                     maskImage: `url(${blackCircle})`,
                     background: 'rgb(236,78,57)',
                     maskRepeat: 'no-repeat',
-                    maskSize: 50
+                    maskSize: size
                 }}
             >
                 <h1 className='tracking-tight'>Weeeeeeeee</h1>
