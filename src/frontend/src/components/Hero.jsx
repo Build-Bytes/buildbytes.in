@@ -1,31 +1,12 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
-import gsap from 'gsap';
 
-// hooks
-import useMousePosition from '../hooks/useMousePosition';
-
-// image 
+// images 
 import blackCircle from '../assets/black-circle.svg'
 
 export default function Hero() {
 
     const charRefs = useRef([]);
     const cursorRef = useRef(null);
-    const {x, y} = useMousePosition();
-    let [size, setSize] = useState(30);
-
-
-    useEffect(() => {
-        const context = gsap.context(() => {
-            gsap.to(cursorRef.current, {
-                webkitMaskPosition: `${x-size/2}px ${y-size/2}px`,
-                duration: 0.5,
-                ease: 'back.out(2)',
-            })
-        })
-
-        return () => context.kill();
-    }, [x, y]);
 
     const addToRefs = (el) => {
         if (el && !charRefs.current.includes(el)) {
@@ -68,7 +49,8 @@ export default function Hero() {
                     }
                 </h1>
             </div>
-            <div
+
+            {/* <div
                 ref={cursorRef}
                 className='max-lg:hidden text-black absolute w-full h-screen flex justify-center flex-col font-extrabold text-center text-8xl'
                 style={{
@@ -83,7 +65,8 @@ export default function Hero() {
                 <h1>Buildddddd</h1>
                 <h1>Yoooou're</h1>
                 <h1>Fuuuuuture.</h1>
-            </div>
+            </div> */}
+
         </section>
     )
 }
