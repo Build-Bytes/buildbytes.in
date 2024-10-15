@@ -8,7 +8,7 @@ readme = "README.md"
 packages = [{include = "buildbytes"}]
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.12"
 Django = "^5.0.7"
 djangorestframework = "^3.15.2"
 
