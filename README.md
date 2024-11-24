@@ -1,4 +1,4 @@
-# buildbytes.in# buildbytes.in
+# buildbytes.in
 
 1. First, let's create the project structure and technology stack:
    - Refer to the [Project Structure](plan/project-structure.md) document for detailed information on the project layout.
